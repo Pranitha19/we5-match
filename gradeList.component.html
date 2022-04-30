@@ -1,0 +1,138 @@
+<div [@routerTransition]>
+
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white">Please Wait... </p>
+    </ngx-spinner>
+
+
+    <div class="col-md-12">
+        <h5>Student - Grade & Attendance</h5>
+        <div class="row" style="margin-top: 2rem;">
+            <div class="col-lg-6 col-sm-6 col-xl-6 col-md-6">
+                <div class="form-group">
+                    <label>Student *</label>
+                    <select class="form-control" (change)="onSelectStudent($event.target.value)">
+                        <option value="" selected disabled>Select Student</option>
+                        <option *ngFor="let d of sList" value="{{d.enroll_no}}">{{d.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="formFlag">
+            <div>
+                <div class="row ct">
+                    <h6 class="col-md-12">Grade Details</h6>
+                </div>
+                <div>
+                    <form [formGroup]="gForm" (ngSubmit)="saveGDetail();">
+                        <div class="formbox">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label>Course *</label>
+                                        <select formControlName="course_id" class="form-control" required placeholder="Enter Course">
+                                            <option *ngFor="let d of cList" value="{{d.course_id}}">{{d.c_name}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && gval.course_id.errors" class="text-danger">
+                                            <div *ngIf="gval.course_id.errors.required">
+                                                Course is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label>Grade *</label>
+                                        <input type="text" formControlName="grade" class="form-control" [ngClass]="{ 'is-invalid': submitted && gval.grade.errors }" />
+                                        <div *ngIf="submitted && gval.grade.errors" class="invalid-feedback">
+                                            <div *ngIf="gval.grade.errors.required">
+                                                Grade is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="form-group">
+                                        <label>Remark *</label>
+                                        <input type="text" formControlName="remark" class="form-control" [ngClass]="{ 'is-invalid': submitted && gval.remark.errors }" />
+                                        <div *ngIf="submitted && gval.remark.errors" class="invalid-feedback">
+                                            <div *ngIf="gval.remark.errors.required">
+                                                Remark is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 mt-4">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary pull-right">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <div class="row ct">
+                    <h6 class="col-md-12">Attendance Details</h6>
+                </div>
+                <div>
+                    <form [formGroup]="aForm" (ngSubmit)="saveADetail();">
+                        <div class="formbox">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label>Date *</label>
+                                        <input type="date" formControlName="datetime" class="form-control" [ngClass]="{ 'is-invalid': submitted1 && aval.datetime.errors }" />
+                                        <div *ngIf="submitted1 && aval.datetime.errors" class="invalid-feedback">
+                                            <div *ngIf="aval.datetime.errors.required">
+                                                Date is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label>Present *</label>
+                                        <input type="number" formControlName="present" class="form-control" [ngClass]="{ 'is-invalid': submitted1 && aval.present.errors }" />
+                                        <div *ngIf="submitted1 && aval.present.errors" class="invalid-feedback">
+                                            <div *ngIf="aval.present.errors.required">
+                                                Present is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="form-group">
+                                        <label>Remark *</label>
+                                        <input type="text" formControlName="remark" class="form-control" [ngClass]="{ 'is-invalid': submitted1 && aval.remark.errors }" />
+                                        <div *ngIf="submitted1 && aval.remark.errors" class="invalid-feedback">
+                                            <div *ngIf="aval.remark.errors.required">
+                                                Remark is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 mt-4">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary pull-right">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+</div>

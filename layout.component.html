@@ -1,0 +1,8 @@
+<app-header></app-header>
+<app-sidebar *ngIf="displayAdmin" (collapsedEvent)="receiveCollapsed($event)"></app-sidebar>
+<section *ngIf="displayAdmin" class="main-container" [ngClass]="{collapsed: collapedSideBar}">
+    <router-outlet></router-outlet>
+</section>
+<section *ngIf="displayVendor" class="vendor-container">
+    <router-outlet></router-outlet>
+</section>

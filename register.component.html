@@ -1,0 +1,226 @@
+<div class="login-page" [@routerTransition]>
+    <div class="row justify-content-md-center">
+        <div class="col-md-12">
+            <img src="assets/images/logo.png" width="100px" class="user-avatar" />
+            <h3>College Portal - Register</h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Register As : </label>
+                        <select class="form-control" required placeholder="Register Type" (change)="onRegisterType($event.target.value)">
+                            <option value="teacher">Teacher</option>
+                            <option value="student">Student</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <form [formGroup]="studForm" class="row" *ngIf="sForm">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" formControlName="name" class="form-control input-underline" required placeholder="Enter Name">
+                        <div *ngIf="submitted && sval.name.errors" class="text-danger">
+                            <div *ngIf="sval.name.errors.required">
+                                Name is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" formControlName="email" class="form-control input-underline" required placeholder="Enter Email ID">
+                        <div *ngIf="submitted && sval.email.errors" class="text-danger">
+                            <div *ngIf="sval.email.errors.required">
+                                Email ID is required
+                            </div>
+                            <div *ngIf="sval.email.errors.email">
+                                Email ID must be valid
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="date" formControlName="dob" class="form-control input-underline" required placeholder="Enter Date of Birth">
+                        <div *ngIf="submitted && sval.dob.errors" class="text-danger">
+                            <div *ngIf="sval.dob.errors.required">
+                                Date of Birth is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select formControlName="gender" class="form-control" required placeholder="Select Gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <div *ngIf="submitted && sval.gender.errors" class="text-danger">
+                            <div *ngIf="sval.gender.errors.required">
+                                Gender is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" formControlName="username" class="form-control input-underline" required placeholder="Enter User Name">
+                        <div *ngIf="submitted && sval.username.errors" class="text-danger">
+                            <div *ngIf="sval.username.errors.required">
+                                User Name is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="password" formControlName="password" class="form-control input-underline" required placeholder="Enter Password">
+                        <div *ngIf="submitted && sval.password.errors" class="text-danger">
+                            <div *ngIf="sval.password.errors.required">
+                                Password is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" formControlName="standard" class="form-control input-underline" required placeholder="Enter Standard">
+                        <div *ngIf="submitted && sval.standard.errors" class="text-danger">
+                            <div *ngIf="sval.standard.errors.required">
+                                Standard is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select formControlName="course" class="form-control" required placeholder="Enter Course" (change)="onCourseSelect($event.target.value)">
+                            <option *ngFor="let d of cList" value="{{d.course_id}}">{{d.c_name}}</option>
+                        </select>
+                        <div *ngIf="submitted && sval.course.errors" class="text-danger">
+                            <div *ngIf="sval.course.errors.required">
+                                Course is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" formControlName="amount" class="form-control input-underline" required placeholder="Enter Amount" disabled>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" formControlName="phone" class="form-control input-underline" required placeholder="Enter Phone">
+                        <div *ngIf="submitted && sval.phone.errors" class="text-danger">
+                            <div *ngIf="sval.phone.errors.required">
+                                Phone is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" formControlName="address" class="form-control input-underline" required placeholder="Enter Address">
+                        <div *ngIf="submitted && sval.address.errors" class="text-danger">
+                            <div *ngIf="sval.address.errors.required">
+                                Address is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <a [routerLink]="['/login']" class="btn rounded-btn">Log In</a> &nbsp;
+                    <a class="btn rounded-btn" type="submit" (click)="saveDetail('student')">Register</a>
+                </div>
+            </form>
+
+
+
+
+            <form [formGroup]="teacherForm" class="row" *ngIf="tForm">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" formControlName="name" class="form-control input-underline" required placeholder="Enter Name">
+                        <div *ngIf="submitted && tval.name.errors" class="text-danger">
+                            <div *ngIf="tval.name.errors.required">
+                                Name is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" formControlName="email" class="form-control input-underline" required placeholder="Enter Email ID">
+                        <div *ngIf="submitted && tval.email.errors" class="text-danger">
+                            <div *ngIf="tval.email.errors.required">
+                                Email ID is required
+                            </div>
+                            <div *ngIf="tval.email.errors.email">
+                                Email ID must be valid
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select formControlName="gender" class="form-control" required placeholder="Select Gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <div *ngIf="submitted && tval.gender.errors" class="text-danger">
+                            <div *ngIf="tval.gender.errors.required">
+                                Gender is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" formControlName="username" class="form-control input-underline" required placeholder="Enter User Name">
+                        <div *ngIf="submitted && tval.username.errors" class="text-danger">
+                            <div *ngIf="tval.username.errors.required">
+                                User Name is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="password" formControlName="password" class="form-control input-underline" required placeholder="Enter Password">
+                        <div *ngIf="submitted && tval.password.errors" class="text-danger">
+                            <div *ngIf="tval.password.errors.required">
+                                Password is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" formControlName="phone" class="form-control input-underline" required placeholder="Enter Phone">
+                        <div *ngIf="submitted && tval.phone.errors" class="text-danger">
+                            <div *ngIf="tval.phone.errors.required">
+                                Phone is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" formControlName="address" class="form-control input-underline" required placeholder="Enter Address">
+                        <div *ngIf="submitted && tval.address.errors" class="text-danger">
+                            <div *ngIf="tval.address.errors.required">
+                                Address is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <a [routerLink]="['/login']" class="btn rounded-btn">Log In</a> &nbsp;
+                    <a class="btn rounded-btn" type="submit" (click)="saveDetail('teacher')">Register</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

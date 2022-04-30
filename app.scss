@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/bootstrap";
+@import "spinner";
+@import "utils";
+@import "rtl";
+@import "responsive";
+
+@media print {
+    .breadcrumb {
+        display: none !important;
+    }
+}
+
+
+
+
+
+
+//Added Custom CSS
+.serialHeader{
+	width: 7%;
+}
+
+.actionHeader{
+	width: 12% !important;
+}
+
+.marLt_1Per{
+	margin-left: 1%;
+}
+
+.marLt_2Per{
+	margin-left: 2%;
+}
+
+.marBt_1Per{
+	margin-bottom: 2%;
+}
+

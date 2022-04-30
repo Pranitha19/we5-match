@@ -1,0 +1,169 @@
+<div [@routerTransition]>
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white">Please Wait... </p>
+    </ngx-spinner>
+
+    <div class="col-md-12">
+        <h5>Student Personal Details</h5>
+        <div class="row" *ngIf="studData">
+            <div class="col-md-4" *ngIf="studData['details']">
+                <b>Name : </b> {{studData['details'].name}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['details']">
+                <b>Enroll No. : </b> {{studData['details'].enroll_no}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['details']">
+                <b>Email : </b> {{studData['details'].email}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['details']">
+                <b>User Name : </b> {{studData['details'].username}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['details']">
+                <b>Address : </b> {{studData['details'].address}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['details']">
+                <b>Gender : </b> {{studData['details'].gender}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['details']">
+                <b>DoB : </b> {{studData['details'].dob}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['details']">
+                <b>Standard : </b> {{studData['details'].standard}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['details']">
+                <b>Phone : </b> {{studData['details'].phone}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['paymentDetails'] && studData['paymentDetails'][0]">
+                <b>Course Name : </b> {{studData['paymentDetails'][0].name}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['paymentDetails'] && studData['paymentDetails'][0]">
+                <b>Course Fee : </b> {{studData['paymentDetails'][0].fee}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['paymentDetails'] && studData['paymentDetails'][0]">
+                <b>Course Duration : </b> {{studData['paymentDetails'][0].duration}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['paymentDetails'] && studData['paymentDetails'][0]">
+                <b>Payment Date : </b> {{studData['paymentDetails'][0].payment_date}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['paymentDetails'] && studData['paymentDetails'][0]">
+                <b>Payment Method : </b> {{studData['paymentDetails'][0].payment_method}}
+            </div>
+            <div class="col-md-4" *ngIf="studData['paymentDetails'] && studData['paymentDetails'][0]">
+                <b>Payment Status : </b> {{studData['paymentDetails'][0].status}}
+            </div>
+        </div>
+
+        <form [formGroup]="detailForm" class="ct" (ngSubmit)="saveDetail();">
+            <h6>Update Personal Details</h6>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" formControlName="name" class="form-control input-underline" required placeholder="Enter Name">
+                        <div *ngIf="submitted && fval.name.errors" class="text-danger">
+                            <div *ngIf="fval.name.errors.required">
+                                Name is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Date of Birth *</label>
+                        <input type="date" formControlName="dob" class="form-control input-underline" required placeholder="Enter Date of Birth">
+                        <div *ngIf="submitted && fval.dob.errors" class="text-danger">
+                            <div *ngIf="fval.dob.errors.required">
+                                Date of Birth is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Gender *</label>
+                        <select formControlName="gender" class="form-control" required placeholder="Select Gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <div *ngIf="submitted && fval.gender.errors" class="text-danger">
+                            <div *ngIf="fval.gender.errors.required">
+                                Gender is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Password *</label>
+                        <input type="password" formControlName="password" class="form-control input-underline" required placeholder="Enter Password">
+                        <div *ngIf="submitted && fval.password.errors" class="text-danger">
+                            <div *ngIf="fval.password.errors.required">
+                                Password is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="text" formControlName="phone" class="form-control input-underline" required placeholder="Enter Phone">
+                        <div *ngIf="submitted && fval.phone.errors" class="text-danger">
+                            <div *ngIf="fval.phone.errors.required">
+                                Phone Number is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Address *</label>
+                        <input type="text" formControlName="address" class="form-control input-underline" required placeholder="Enter Address">
+                        <div *ngIf="submitted && fval.address.errors" class="text-danger">
+                            <div *ngIf="fval.address.errors.required">
+                                Address is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-12 ct">
+        <h5>Grade Details</h5>
+        <div *ngIf="studData && studData['gradeDetails'] && studData['gradeDetails'].length">
+            <div class="row" *ngFor="let d of studData['gradeDetails']">
+                <div class="col-md-6">
+                    <b>Grade : </b> {{d.grade}}
+                </div>
+                <div class="col-md-6">
+                    <b>Remark : </b> {{d.remark}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 ct">
+        <h5>Attendance Details</h5>
+        <div *ngIf="studData && studData['attendance'] && studData['attendance'].length">
+            <div class="row" *ngFor="let d of studData['attendance']">
+                <div class="col-md-4">
+                    <b>Date : </b> {{d.datetime}}
+                </div>
+                <div class="col-md-4">
+                    <b>Present : </b> {{d.present}}
+                </div>
+                <div class="col-md-4">
+                    <b>Remark : </b> {{d.remark}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
